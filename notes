@@ -1,0 +1,27 @@
+to get the simulator to run only 1 robot we should change animal_c_rough_config
+    we need to make "num_envs = 1# instead of 4096"
+
+    then without using --headless we can see the robot train 
+    - one robot uses 7 gigs of vram. 
+
+for assets/stuff in the simulator: 
+
+in isaacgym there are urdf nad mjcf libraries 
+
+questions: 
+1. why does running a1 give a segmentation fault? 
+2. does it matter if we just make the environment w/o the robot or with anymalC? 
+
+3. how to make an environment? can we do it by hand or should we do it with a python script? 
+
+GPU memory comes from actor_critic.py in rsl_rl/rsl_rl/modules
+- you can just decrease the NN size [128,128], [128,128]
+
+
+we want to try to add assets the way that the balls are added in /home/theotourneux/isaac_gym/isaacgym/python/examples/1080_balls_of_solitude.py
+
+- to do this we need to figure out how the assets are being loaded 
+
+
+inheritance for anymal_c_flat.
+    - anymal_c_flat inherits from anymal_c_rough which inherits from LeggedRobotCfg which inherits from BaseConfig
